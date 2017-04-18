@@ -15,13 +15,13 @@ Simple C++ program illustrating a graph data structure
 	* For a set of 8 vertices, the unordered set of vertices can be defined as:
 		* _V = {v1,v2,v3,v4,v5,v6,v7,v8}_
 	* Edges can be defined as
-		* directed
+		* __directed__
 			* Can refer to a tree where there one end is an origin and another end is a destination
 			* Draw an arrow with a head to point to the destination
 			* Can be represented as an ordered pair where the first element is the origin and the second element is the destination
 			* Can have two directed edges. For example:
 				* u -> v and v -> u are the ordered pairs (u,v) and (v,u)
-		*undirected
+		* __undirected__
 			* The connection is two way (bidirectional)
 			* Represented as an unordered pair
 				* {u,v}
@@ -46,4 +46,45 @@ Simple C++ program illustrating a graph data structure
 	* An unweighted graph can be seen as a weighted graph with all edges having the same weight such as _weight = 1 unit_
 
 ### Properties of Graphs - [YouTube Link](https://youtu.be/AfYqN3fGapc)
-* 
+* To denote the number of elements in a set, we use cardinality of a set
+	* _|V|_ -> number of vertices
+	* _|E|_ -> number of edges
+* Can have some special kinds of edges in a graph. They can complicate working with graphs. Need to take extra care when solving problems.
+	* __Self-loop__
+		* An edge is called a self-loop or a self-edge if it involves only one vertex. If both ends of the vertex are the same then it is called a self-loop.
+		* Can have a self-loop in both directed and undirected graphs
+		* An example would be a web page that links to itself such as when on the home page and clicking the home tab refreshes the home page
+	* __Multiedge/Parallel edge__
+		* An edge is called a multiedge if it occurs more than once in a graph
+		* Can have a multiedge in both directed and undirected graphs
+		* An example would be a graph of cities with flights as edges. There may be different flights offered from different airlines having different weights represented as costs of flights or flight numbers
+* If a graph does not contain self-loop or multiedge properties then it is called a __simple graph__
+* Given number of vertices in a simple graph (graph with no self-loop or multiedge), what are the miniumum number of edges?
+	* 4 vertices
+		* _V = {v1,v2,v3,v4}_
+		* _|V| = 4_
+		* It is acceptable if there a no edges. It would still be a graph
+			* _E = 0_
+	* So miniumum number of edges in a graph is 0
+* If a simple graph is directed, what is the maximum number of edges?
+	* if _|V| = n_ then, _0 <= |E| <= n(n-1)_
+* If a simple graph is undirected, what is the maximum number of edges?
+	* if _|V| = n_ then, _0 <= |E| <= (n(n-1))/2_
+* Number of edes in a directed graph can be very large compared to the number of vertices in a graph
+	* if _|V| = 10_, then _|E| <= 90_
+	* if _|V| = 100_, then _|E| <= 9900_
+	* Maximum number of edges would be close to squared the number of vertices
+* A graph is called __dense__ if the maximum number of edges is close to the square of vertices
+* A graph is called __sparse__ if the number of edges is close to the amount of vertices
+* In working with graphs, many decisions are made based on whether the graph is dense or sparse
+	* For a dense graph, typically use an adjacency matrix
+	* For a sparse graph, typically use an adjacency list
+* Paths in a graph
+	* __Walk:__ -  Walk and path can be used as synonyms in different computer science materials. It is a sequence of vertices where each adjacent pair in the sequence is connected by an edge 
+		* Assume there are 8 vertices labeled from A through H
+		* The sequence of vertices <A,B,F,H> is a path in the graph
+	* __(Simple) Path:__ - a path in which no vertices (and thus no edges) are repeated
+		* In graph theory there is some inconsistency in the use of the term path. Most of the time when path is referenced it is in context of a simple path
+		* If repetition is possible then use the term __walk__
+		* So a path is basically a walk in which no vertices or edges are repeated
+	* __Trail:__ - a walk in which no edges are repeated
