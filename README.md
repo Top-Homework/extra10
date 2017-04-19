@@ -83,8 +83,36 @@ Simple C++ program illustrating a graph data structure
 	* __Walk:__ -  Walk and path can be used as synonyms in different computer science materials. It is a sequence of vertices where each adjacent pair in the sequence is connected by an edge 
 		* Assume there are 8 vertices labeled from A through H
 		* The sequence of vertices <A,B,F,H> is a path in the graph
-	* __(Simple) Path:__ - a path in which no vertices (and thus no edges) are repeated
-		* In graph theory there is some inconsistency in the use of the term path. Most of the time when path is referenced it is in context of a simple path
+	* __(Simple) Path:__ - if no vertices (and thus no edges) are repeated
+		* In graph theory there is some inconsistency in the use of the term __path__. Most of the time when path is referenced it is in context of a __simple path__
 		* If repetition is possible then use the term __walk__
 		* So a path is basically a walk in which no vertices or edges are repeated
-	* __Trail:__ - a walk in which no edges are repeated
+	* __Trail:__ - vertices can be repeated, but edges can not be repeated
+	* __Closed walk:__ - starts and ends at same vertex
+		* Length of walk must be greater than zero
+	* __Simple Cycle:__ - no repetition other than start and end vertices
+		* Basically, it is a __closed walk__ with no repetition besides start and end vertices
+	* __Acyclic Graph:__ - a graph with no cycle
+* Strongly Connected Graphs:
+	* Graph is directed (digraph)
+	* if there is a path from any vertex to any other vertex
+
+### Graph Representation: Edge List - [YouTube Link](https://youtu.be/ZdY1Fp9dKzs)
+* Space Complexity
+	* Vertex List is _O(|V|)_
+	* Edge List is _O(|E|)_
+	* So space complexity is _O(|V| + |E|)_
+* Time Complexity
+	* Operation:
+		* Finding adjacent nodes
+			* Need to perform a linear search to scan the entire list
+			* _O(|E|)_
+			* Very costly
+		* Check if given nodes are connected
+			* Need to perform a linear search to scan the entire list
+			* _O(|E|)_
+			* Very costly
+* So in summary, the number of edges in a graph can be very large close to square the number of vertices. Need to find a way to keep time complexity down using _O(|V|)_
+
+### Graph Representation: Adjacency Matrix - [YouTube Link](https://youtu.be/9C2cpQZVRBA)
+* Store the edges in a 2 dimensional array or matrix
