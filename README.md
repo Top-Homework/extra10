@@ -115,4 +115,39 @@ Simple C++ program illustrating a graph data structure
 * So in summary, the number of edges in a graph can be very large close to square the number of vertices. Need to find a way to keep time complexity down using _O(|V|)_
 
 ### Graph Representation: Adjacency Matrix - [YouTube Link](https://youtu.be/9C2cpQZVRBA)
-* Store the edges in a 2 dimensional array or matrix
+* Because storing the edges into a list is costly in terms of time complexity, we need to think of something better
+* Store the edges in a two dimensional array or matrix. This is called an __Adjacency Matrix__
+	* Find the number of vertices
+		* _|V| = V_
+	* Find the size of the two dimensional array to store the edges
+		* _V * V_ array for edges
+* Example: Suppose we have 8 vertices in an undirected and unweighted graph. We will use a list of size V(8) to store the vertices. Will will use an 8x8 (64 cells) matrix to store the edges.
+* Set ith row and jth column (A<sub>ij</sub>) as 1 or boolean value true if there is an edge from i to j. 0 or boolean false otherwise
+	* A<sub>ij</sub> = {1, if there exists edge from i to j} {0, otherwise}
+* Matrix is symmetric for an undirected graph because A<sub>ij</sub> = A<sub>ji</sub>
+* Time complexity:
+	* Finding adjacent nodes
+		* O(V) + O(V) = __O(V)__
+	* Finding if two nodes are connected
+		* O(1) + O(V) = __O(V)__
+		* If a hash table is implemented then we can reduce the time it takes to linearly scan the vertex list to __O(1)__
+* Space complexity:
+	* With an adjacency matrix designe we have improved on time, but have gon really high on memory usage
+	* Instead of using memory units exactly equal to the number of edges when we did an edge list storage, we are using exactly V<sup>2</sup> units of memory __O(V<sup>2</sup>)__
+	* If the graph is __dense__, that is the number of edges is close to V<sup>2</sup>, then this is good
+	* If the graph is __sparse__, that is the number of edges is close to the number of vertices, then we are wasting a lot of memory storing zeros
+* Most graphs with a really large number of vertices would not be very dense (would not have number of edges anywhere close to V<sup>2</sup>)
+	* For example, we are modeling a social network
+		* if _|V| = 10<sup>9</sup>_
+		* if average number of friends = 1000
+		* then _|E| = (10<sup>9</sup> * 10<sup>3</sup>) / 2 = (10<sup>12</sup>) / 2 = __5 * 10<sup>11</sup>___
+		* 5 * 10<sup>11</sup> is a lot less then square number of vertices (V<sup>2</sup> = __10<sup>18</sup>__)
+		* 10<sup>18</sup> bytes ~ 1000 petabytes
+			* This much data would not fit into one disk
+		* 5 * 10<sup>11</sup> bytes ~ 0.5 terabyes
+			* A typical PC these days would have this size storage
+	So for a something like a large social network, an adjacency matrix representation is not very efficient
+* Most real world graphs will be sparse, so an adjacency matrix is not a good fit because even though time complexity has been reduced, space complexity is not very efficient
+
+### Graph Representation: Adjacency List - [YouTube Link](https://youtu.be/k1wraWzqtvQ)
+* 
